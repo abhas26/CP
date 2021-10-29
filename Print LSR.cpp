@@ -10,6 +10,19 @@ string dp1(string a,string b){
             else dp[i][j]=max(dp[i][j-1],dp[i-1][j]);
         }
     }
+    string ans="";
+    int i=a.size(),j=b.size();
+    while(i>0 && j>0){
+        if(a[i-1]==b[j-1]){
+            ans.push_back(b[j-1]);
+            j--;
+            i--;   
+        }
+        else if(dp[i][j-1]>dp[i-1][j]) j--;
+        else i--;
+    }
+    reverse(ans.begin(), ans.end());
+    return ans;
 }
 
 int main(){
